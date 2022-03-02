@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/assets/css/manage-subscriptions.css">
+<h1 style="display: inline" class="mt-4">Manage Subscriptions</h1>
+<a href="/auth/logout" class="btn btn-secondary nav-btn">Logout</a>
+<a href="/dashboard" class="mr-2 btn btn-secondary nav-btn">Back to Dashboard</a>
+<div class="container group mt-5">
+    <div class="grid-1-5">
+        <h2>Basic</h2>
+        <h3><span class="uppercase">Free</span></h3>
+        <p>1M+ monthly visits</p>
+        <ul>
+            <li>Email Support</li>
+            <li>Phone Support</li>
+            <li>Dedicated Environment</li>
+            <li>Customized Plan</li>
+        </ul>
+        <% if (subscription!='basic' ) { %>
+            <a href="/subscriptions/subscribe?name=basic" class="button">
+                Activate
+            </a>
+            <%} else { %>
+                <a href="" class="button" style="pointer-events: none;">
+                    Activated
+                </a>
+                <% } %>
+
+    </div>
+    <div class="grid-1-5">
+        <h2>Premium</h2>
+        <h3><sup>$</sup>499<span class="small">/mo</span></h3>
+        <p>225,000 monthly visits</p>
+        <ul>
+            <li>Email Support</li>
+            <li>Phone Support</li>
+            <li>Unlimited Data Transfer</li>
+        </ul>
+        <% if (subscription!='premium' ) { %>
+            <a href="/subscriptions/subscribe?name=premium" class="button">
+                Activate
+            </a>
+            <%} else { %>
+                <a href="" class="button" style="pointer-events: none;">
+                    Activated
+                </a>
+                <% } %>
+    </div>
+    <div class="grid-1-5">
+        <h2>Pro</h2>
+        <h3><sup>$</sup>699<span class="small">/mo</span></h3>
+        <p>10,000 monthly visits</p>
+        <ul>
+            <li>Limited Email Support</li>
+            <li>Unlimited Data Transfer</li>
+            <li>10GB Local Storage</li>
+        </ul>
+        <% if (subscription!='pro' ) { %>
+            <a href="/subscriptions/subscribe?name=pro" class="button">
+                Activate
+            </a>
+            <%} else { %>
+                <a href="" class="button" style="pointer-events: none;">
+                    Activated
+                </a>
+                <% } %>
+    </div>
+
+
+</div>

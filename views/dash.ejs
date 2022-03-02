@@ -1,0 +1,108 @@
+<h1 style="display: inline" class="mt-4">Netflix</h1>
+<a href="/auth/logout" class="btn btn-secondary nav-btn">Logout</a>
+<a href="/subscriptions/manage-subscriptions" class="mr-2 btn btn-secondary nav-btn">Manage
+    Subscriptions</a>
+<p class="lead mb-3">Welcome <%= name %>, Your Current Subscription is <%= subscription %>
+</p>
+
+<% for(var i=0; i < movies.length; i++) { %>
+    <div class="movie_card" id="bright">
+        <div class="info_section">
+            <div class="movie_header">
+                <img class="locandina" src="<%= movies[i].tile %>" />
+                <h1>
+                    <%= movies[i].name %>
+                </h1>
+                <h4>
+                    <%= movies[i].releaseYear %>, <%= movies[i].director %>
+                </h4>
+                <span class="minutes">
+                    <%= movies[i].duration %>
+                </span>
+                <p class="type">
+                    <%= movies[i].genre %>
+                </p>
+            </div>
+            <div class="movie_desc">
+                <p class="text">
+                    <%= movies[i].description %>
+                </p>
+            </div>
+            <div class="movie_social">
+                <ul>
+                    <li data-toggle="modal" class="btn video-btn" data-src="/watch?v=<%= movies[i].fileName %>"
+                        data-target="#myModal">
+                        <span id="txt3">Play Now</span><i class="material-icons">&#xE037;</i>
+                    </li>
+                    <!-- <li><i class="material-icons"></i></li>
+                    <li><i class="material-icons">chat_bubble</i></li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div style="background-image: url('<%= movies[i].cover %>');" class="blur_back bright_back"></div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+
+                <div class="modal-body">
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video id="video" type="video/mp4" autoplay controls></video>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <% } %>
+
+
+        <script>
+            $(document).ready(function () {
+
+                // Gets the video src from the data-src on each button
+
+                var $videoSrc;
+                $('.video-btn').click(function () {
+                    $videoSrc = $(this).data("src");
+                });
+                console.log($videoSrc);
+
+
+
+                // when the modal is opened autoplay it  
+                $('#myModal').on('shown.bs.modal', function (e) {
+
+                    // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+                    $("#video").attr('src', $videoSrc);
+                })
+
+
+
+                // stop playing the youtube video when I close the modal
+                $('#myModal').on('hide.bs.modal', function (e) {
+                    // a poor man's stop video
+                    $("#video").attr('src', '');
+                })
+
+
+
+
+
+
+                // document ready  
+            });
+
+
+
+        </script>
